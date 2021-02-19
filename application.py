@@ -23,7 +23,7 @@ if __name__ == "__main__":
         driverDetails = cabDriver.register_driver(name, cabno, contact, available, x1, x2) 
 
         print("Registered Drivers:", driverDetails)
-
+        cabDriver.list_drivers()
     #Rider registration code
     print("Registering Rider details")
 
