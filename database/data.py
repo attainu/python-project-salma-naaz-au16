@@ -3,8 +3,8 @@ import pickle
 class DataStore:
 
     def __init__(self):
-        self.rider_filename = "assets/rider.pk"
-        self.driver_filename = "assets/driver.pk"
+        self.rider_filename = "resources/rider.pk"
+        self.driver_filename = "resources/driver.pk"
 
     def write_file(self, filename, file_data):
         ffile=open(filename,'ab')

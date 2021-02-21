@@ -10,10 +10,11 @@ class Application:
         self.cab_driver = Driver() #object for driver
         self.cab_rider = Rider()  #object for rider
         self.rides = Rides() #object for rides
+        self.distance = Distance() #object for distance
 
     #function to print welcome messages
     def launch_home(self):
-        print("Welcome to Cab booking system")
+        print("Welcome to SN Cabs booking Platform")
         print("\n\n","Services available are :")
         self.print_services()
     
@@ -82,12 +83,13 @@ class Application:
             print("\n\n","Enjoy your ride!!")
             print("You have reached your destination")
 
-            trip_distance = self.calc_distance(rider_detail["x"], rider_detail["y"], dest_x, dest_y)
+            trip_distance = self.distance.calculate_distance(rider_detail["x"], rider_detail["y"], dest_x, dest_y)
             print("\n\n", "Your Trip Distance is: ", trip_distance, " KM")
 
             #End Trip/ride
-            total_fare = self.calc_trip_fare(rider_detail, dest_x, dest_y)
-            print("\n\n","Total cost for trip to be paid is Rs.", total_fare)
+            f = Fare()
+            total_fare = f.calculate_total_fare(trip_distance)
+            print("Total cost for trip to be paid is Rs.", total_fare)
 
             #Release cab by making it available and update current location
             self.release_cab(assigned_cab, dest_x, dest_y)
@@ -97,7 +99,7 @@ class Application:
     # function to find nearest cab available
     def find_nearest_cab(self, rider_detail):
         all_drivers = self.cab_driver.list_drivers()
-        print("\n\n","List of all cab/drivers avaiable: ", all_drivers)
+        print("\n\n","List of all cab/drivers registered: ", all_drivers)
         max_distance = 9999999999
         assigned_Cab = None
         for driver in all_drivers:
@@ -108,36 +110,20 @@ class Application:
                 dest_x = rider_detail["x"]
                 dest_y = rider_detail["y"]
 
-                d = self.calc_distance(source_x, source_y, dest_x, dest_y)
+                d = self.distance.calculate_distance(source_x, source_y, dest_x, dest_y)
                 print("\n\n","This driver ", driver['name'], "is", d, "KM from you")
 
                 if d < max_distance:
                     max_distance = d
                     assigned_Cab = driver  
-        return assigned_Cab  
-    
-    # function for fare calculation
-    def calc_trip_fare(self, rider_detail, dest_x, dest_y):
-        fare_per_km = 5
-        source_x = rider_detail["x"]
-        source_y = rider_detail["y"]
-        f = Fare()
-        fare = f.calculate_fare(source_x, source_y, dest_x, dest_y)
-        print("\n\n","Your destination has arrived!!")
-        total_fare = fare*fare_per_km
-        return total_fare
-
-    def calc_distance(self, source_x, source_y, dest_x, dest_y):
-        d = Distance()
-        total_distance = d.calculate_distance(source_x, source_y, dest_x, dest_y)
-        return total_distance
+        return assigned_Cab
 
     def print_ride_history(self):
         print("\n\n", self.rides.list_ride_history())
     
     def print_rider_driver_data(self):
-        print("List of all Drivers and Riders are :")
-        print("\n\n",self.cab_driver.list_drivers())
+        print("\n\n","List of all Drivers and Riders are :")
+        print(self.cab_driver.list_drivers())
         print(self.cab_rider.list_riders())
 
     #function to block cab for not sharing with other rides till trip completes

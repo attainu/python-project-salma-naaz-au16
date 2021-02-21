@@ -1,5 +1,9 @@
 import math
 
 class Fare:
-    def calculate_fare(self, x1,y1,x2,y2):
-        return (math.sqrt(((y2 - y1)**2)+((x2 -x1)**2)))
+
+    def __init__(self, km_price= 5):
+        self.per_km_fare = km_price
+
+    def calculate_total_fare(self, trip_distance:int):
+        return trip_distance*self.per_km_fare
