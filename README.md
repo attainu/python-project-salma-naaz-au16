@@ -37,12 +37,12 @@ First it will register driver , rider and book a cab with calculating distance a
 After first booking application will allow user to give choices and perform 
 required operation untill """EXIT""" is selected
 
-#### Some important things used in project
+### Some important things used in project
 Used Picke module to store data into file and read from file. 
 Distance calcuation to find the nearest available cab.
 Fare calculation based on source and destination with fare per KM.
 Identifying driver by driver name to update location and availability.
 
-#### Future improvements:
+### Future improvements:
 We can design an user interface for the program so a normal user can easily
 interact with it. We can add more features like displaying different types of cabs and sharing rides between different riders.
