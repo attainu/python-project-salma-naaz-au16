@@ -22,7 +22,7 @@ class Application:
                 "2. Register Rider \n",
                 "3. Book Cab & Ride \n",
                 "4. Check Ride History \n",
-                "5. Switch On/Off Driver Avaiability \n",
+                "5. Switch On/Off Driver Availability \n",
                 "6. Update Cab's Location \n",
                 "7. Exit: \n")
 
@@ -98,7 +98,7 @@ class Application:
     def find_nearest_cab(self, rider_detail):
         all_drivers = self.cab_driver.list_drivers()
         print("\n\n","List of all cab/drivers avaiable: ", all_drivers)
-        max_distance = 999
+        max_distance = 9999999999
         assigned_Cab = None
         for driver in all_drivers:
             if(driver["available"].lower() == 'yes'):
