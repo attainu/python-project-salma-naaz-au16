@@ -83,7 +83,7 @@ class Application:
             print("You have reached your destination")
 
             trip_distance = self.calc_distance(rider_detail["x"], rider_detail["y"], dest_x, dest_y)
-            print('\n' *2, "Your Trip Distance is: ", trip_distance)
+            print("\n\n", "Your Trip Distance is: ", trip_distance, " KM")
 
             #End Trip/ride
             total_fare = self.calc_trip_fare(rider_detail, dest_x, dest_y)
