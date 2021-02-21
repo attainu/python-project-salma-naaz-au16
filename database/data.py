@@ -3,11 +3,11 @@ import pickle
 class DataStore:
 
     def __init__(self):
-        self.rider_filename = "assets/rider.pk1"
-        self.driver_filename = "assets/driver.pk1"
+        self.rider_filename = "assets/rider.pk"
+        self.driver_filename = "assets/driver.pk"
 
     def write_file(self, filename, file_data):
-        ffile=open(filename,'wb')
+        ffile=open(filename,'ab')
         pickle.dump(file_data,ffile)
         ffile.close()
 
@@ -15,6 +15,9 @@ class DataStore:
         ffile=open(filename,'rb')
         file_data = pickle.load(ffile)
         ffile.close()
+        all_data = []
+        for d in file_data:
+            all_data.append(d)
         return file_data
         
     def read_rider_info(self):
